@@ -43,7 +43,12 @@ class System:
 
     """
 
-    def __init__(self, g_2d=1.0, spin_g_factor=1.05, gamma=0.03, temp=1.0, seed=42):
+    def __init__(self,
+                 g_2d=1.0,
+                 spin_g_factor=1.05,
+                 gamma=0.03,
+                 temp=1.0,
+                 seed=42):
         """initialize system parameters"""
         self.g = g_2d
         self.g12 = spin_g_factor
@@ -81,9 +86,11 @@ class System:
         """evolution of the field after a lapse dt"""
 
         # non-linear interaction
-        interaction1 = (self.g * (np.abs(psi1)**2 + self.g12*np.abs(psi2)**2)
+        interaction1 = (self.g * (np.abs(psi1)**2
+                                  + self.g12*np.abs(psi2)**2)
                         - mu) * psi1
-        interaction2 = (self.g * (np.abs(psi2)**2 + self.g12*np.abs(psi1)**2)
+        interaction2 = (self.g * (np.abs(psi2)**2
+                                  + self.g12*np.abs(psi1)**2)
                         - mu) * psi2
         
         # drift term
