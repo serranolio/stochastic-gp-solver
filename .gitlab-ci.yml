@@ -1,0 +1,33 @@
+image: ubuntu:24.04
+
+build-docs:
+  script:
+    # - export  # Useful for debugging variables.
+    - apt-get update && apt-get install -y curl unzip # build-essential curl unzip # texlive-full
+    - bash <(curl -fsSL https://pixi.sh/install.sh)
+    - export PATH="$HOME/.pixi/bin:$PATH"
+    - export BASE_URL="${CI_PAGES_URL}"
+    - pixi install
+    - pixi run myst -v
+    - pixi run jupyter kernelspec list
+
+    # Due to the following issue, we need to set c.ServerApp.allow_root = True or we
+    # will get a error "Jupyter server did not start"
+    # "Unable to instantiate connection to Jupyter Server"
+    # This is because mystmd does not execute code as root.  Unfortunately, I don't
+    # think there is a way to pass this flag other than in a config file.  A better
+    # option might be to run `myst` as non-root, but this seem somewhat complicated.
+    # https://github.com/jupyter-book/mystmd/issues/2472
+    # https://jupyter-server.readthedocs.io/en/latest/users/configuration.html
+    - mkdir -p .jupyter
+    - printf "c.ServerApp.allow_root = True\n" > .jupyter/jupyter_server_config.py
+    - export JUPYTER_CONFIG_DIR="$PWD/.jupyter"
+    - pixi run myst -d build --html --execute
+    - mv _build/html public
+  pages: true  # specifies that this is a Pages job
+  artifacts:
+    paths:
+      - public
+  rules:
+    # Only run the CI if the commit message has "DOC" in it.
+    - if: $CI_COMMIT_MESSAGE =~ "/DOC/"
