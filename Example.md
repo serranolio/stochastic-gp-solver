@@ -134,4 +134,7 @@ anim = FuncAnimation(fig, update, frames=n_frames, blit=True, interval=50)
 # --- Display inline ---
 HTML(anim.to_html5_video())
 
+anim.save("output_animation.mp4", fps=20, dpi=300)
+
+
 ```

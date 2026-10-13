@@ -4,3 +4,14 @@
 
 # MyST build outputs
 _build
+
+# Large simulation outputs and media (exceed GitHub size limits)
+*.npy
+*.mp4
+*.gif
+frames/
+palette.png
+
+# Editor / Jupyter artifacts
+.ipynb_checkpoints/
+*.swp

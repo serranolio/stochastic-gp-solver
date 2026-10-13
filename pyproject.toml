@@ -1,5 +1,6 @@
 [project]
 authors = [{name = "serranolio", email = "serranolio@gmail.com"}]
+license = "MIT"
 dependencies = []
 name = "sgp"
 requires-python = ">= 3.11"
