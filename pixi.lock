@@ -5851,7 +5851,7 @@ packages:
 - pypi: ./
   name: sgp
   version: 0.1.0
-  sha256: e940998b342645122ff8dd891757c12ee890f8493733bf86055b314816427d9f
+  sha256: e5193e9314d5dc1a3cfcef80c0eb20d5b4a3f744c0c168ca00e6c00c7e043011
   requires_python: '>=3.11'
   editable: true
 - conda: https://conda.anaconda.org/conda-forge/noarch/six-1.17.0-pyhe01879c_1.conda

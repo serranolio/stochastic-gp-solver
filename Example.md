@@ -6,10 +6,10 @@ kernelspec:
 
 # Stochastic Projected Gross-Pitaevskii (SPGP) simulation
 
-This example uses the module sgp (stochastic gross-piteavskii) to simulate the formation of a two-component BEC at finite temperature.
-The package is based on the methodology described in the work from [M. Thudiyangal and A. del Campo](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033152) which, in turn, utilized the $c$-field techniques developed by [A. S. Bradley, M. J. Davis, R.J. Ballagh and C. W. Gardiner](https://www.tandfonline.com/doi/abs/10.1080/00018730802564254).
+This example uses the module sgp (stochastic Gross-Pitaevskii) to simulate the formation of a two-component BEC at finite temperature.
+The package is based on the methodology described in the work from [M. Thudiyangal and A. del Campo](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033152) which, in turn, utilized the $c$-field techniques developed by [A. S. Bradley, M. J. Davis, R. J. Ballagh and C. W. Gardiner](https://www.tandfonline.com/doi/abs/10.1080/00018730802564254).
 
-To simulate condensation we artificially ramp the chemical potential from zero to a value $\mu_f$ above the critical condensation and let the system evolve until equilibrium. We employ the following SPGP:
+To simulate condensation we artificially ramp the chemical potential from zero to a value $\mu_f$ above the critical point for condensation and let the system evolve until equilibrium. We employ the following SPGP:
 $$
 i\hbar\frac{\partial}{\partial t} \psi_j(\mathbf{r}, t) = \mathcal{P}\left\{ (1-i\gamma)\left[\left(-\frac{\hbar^2\nabla^2}{2m} + g|\psi_j(\mathbf{r}, t)|^2 + g_s|\psi_{3-j}|^2 - \mu(t)\right)\psi_j\right] + \eta_j(\mathbf{r}, t)\right\}
 $$
@@ -18,9 +18,9 @@ where:
  - $\psi_j(\mathbf{r}, t)$ is the wave-function of the $j$-component.
  - $\mathcal{P}$ is a low energy projector that removes energies above a cutoff $\Lambda=k_B T \ln{2} + \mu_f$.
  - $T$ quantifies the thermal fluctuations.
- - $\eta_j(\mathbf{r}, t)$ is a normal distributed random variable with correlation:
+ - $\eta_j(\mathbf{r}, t)$ is a normally distributed random variable with correlation:
  $$\langle \eta_i^*(\mathbf{r}, t)\eta_j(\mathbf{r}', t')\rangle = 2\hbar\gamma k_B T \delta(\mathbf{r}-\mathbf{r}')\delta(t -t')\delta_{ij}$$
- - $\gamma$ is the discipative coefficient.
+ - $\gamma$ is the dissipation coefficient.
  - $g$/$g_s$ is the self/inter-species interaction strength.
 
 The time-dependent chemical potential is set by the linear ramp
@@ -57,7 +57,7 @@ plt.rcParams["figure.figsize"] = (4, 3)
 plt.rc('text', usetex=True)
 plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath, amssymb, bm}'
 ```
-## 1. System's setup
+## 1. System setup
 ```{code-cell} python3
 nx = 2**7
 ny = 2**7
@@ -72,14 +72,14 @@ dispersion = (geo.kx_**2 + geo.ky_**2) / 2
 
 syst = sgp.System(g_2d=1.0,             # self-interaction strength
                   spin_g_factor=0.5,    # inter-species/self interaction ratio
-                  gamma=0.03,           # discipative coefficient
+                  gamma=0.03,           # dissipation coefficient
                   temp=0.2,             # temperature
                   )
 
 syst.set_geometry(geo)
 syst.set_dispersion(dispersion)
 ```
-## 2. Evolultion
+## 2. Evolution
 
 ```{code-cell} python3
 try:
