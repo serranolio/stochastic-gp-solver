@@ -9,7 +9,7 @@ The implementation follows the methodology of [M. Thudiyangal and A. del Campo, 
 Condensation is driven by ramping the chemical potential from (near) zero to a final value $\mu_f$ above the critical point, then letting the system relax to equilibrium. Each component $j \in \{1, 2\}$ evolves according to
 
 $$
-i\hbar\frac{\partial \psi_j}{\partial t} = \mathcal{P}\left\{ (1-i\gamma)\left[-\frac{\hbar^2\nabla^2}{2m} + g|\psi_j|^2 + g_s|\psi_{3-j}|^2 - \mu(t)\right]\psi_j + \eta_j(\mathbf{r}, t)\right\}
+i\hbar\frac{\partial \psi_j}{\partial t} = \mathcal{P}\left( (1-i\gamma)\left[-\frac{\hbar^2\nabla^2}{2m} + g|\psi_j|^2 + g_s|\psi_{3-j}|^2 - \mu(t)\right]\psi_j + \eta_j(\mathbf{r}, t)\right)
 $$
 
 where
